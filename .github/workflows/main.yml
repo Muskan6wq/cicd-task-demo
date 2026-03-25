@@ -1,4 +1,4 @@
-name: CI Pipeline
+name: Secure CI Pipeline
 
 on: [push]
 
@@ -6,10 +6,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      PASSWORD: ${{ secrets.MY_PASSWORD }}
+
     steps:
       - uses: actions/checkout@v3
 
-      - name: Run App
+      - name: Run App Securely
         run: |
-          echo "My password is 12345"
+          echo "Password is $PASSWORD"
           python app.py
+
+
+      
